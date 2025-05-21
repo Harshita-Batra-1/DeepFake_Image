@@ -20,7 +20,7 @@ st.set_page_config(layout="wide")
 # function to load and cache pretrained model
 @st.cache_resource()
 def load_model():
-    path = "../dffnetv2B0"
+    path = "dffnetv2B0"
     with open(path + '.json', 'r') as f:
         model = model_from_json(f.read())
     model.load_weights(path + '.h5')
