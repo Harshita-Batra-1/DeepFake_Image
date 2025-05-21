@@ -1,0 +1,2 @@
+tensorflow
+streamlit-image-select
