@@ -13,18 +13,18 @@ import time
 # Set page configuration FIRST
 st.set_page_config(layout="wide")
 
-# -------------------
-# CACHED FUNCTIONS
-# -------------------
 
-# function to load and cache pretrained model
 @st.cache_resource()
 def load_model():
-    path = "dffnetv2B0"
-    with open(path + '.json', 'r') as f:
+    base_path = os.path.dirname(__file__)  # directory where multipage_app.py is
+    json_path = os.path.join(base_path, "dffnetv2B0.json")
+    h5_path = os.path.join(base_path, "dffnetv2B0.h5")
+
+    with open(json_path, 'r') as f:
         model = model_from_json(f.read())
-    model.load_weights(path + '.h5')
+    model.load_weights(h5_path)
     return model
+
 
 # function to preprocess an image and get a prediction from the model
 def get_prediction(model, image):
