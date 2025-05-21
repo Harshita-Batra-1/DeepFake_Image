@@ -43,11 +43,23 @@ def get_prediction(model, image):
 # generate selection of sample images 
 @st.cache_data()
 def load_images():
-    real_images = ["images/Real/" + x for x in os.listdir("images/Real/")]
-    fake_images = ["images/Fake/" + x for x in os.listdir("images/Fake/")]
+    base_path = os.path.dirname(__file__)  # Get the directory of the current script
+
+    real_dir = os.path.join(base_path, "images", "Real")
+    fake_dir = os.path.join(base_path, "images", "Fake")
+
+    # Ensure only files are listed (skip subdirs or hidden files)
+    real_images = [os.path.join("images/Real", x) for x in os.listdir(real_dir) if os.path.isfile(os.path.join(real_dir, x))]
+    fake_images = [os.path.join("images/Fake", x) for x in os.listdir(fake_dir) if os.path.isfile(os.path.join(fake_dir, x))]
+
     image_library = real_images + fake_images
-    image_selection = np.random.choice(image_library, 20, replace=False)
+
+    # Safety check: ensure at least 20 images available
+    sample_size = min(20, len(image_library))
+    image_selection = np.random.choice(image_library, sample_size, replace=False)
+
     return image_selection
+
 
 # -------------------
 # APP MODES
