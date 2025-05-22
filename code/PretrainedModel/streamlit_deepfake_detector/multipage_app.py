@@ -118,16 +118,27 @@ def game_mode(classifier, images):
         st.subheader(f"***It's {true_label}!***")
 
 def detector_mode(classifier):
+    # Centered heading
     st.markdown("<h3 style='text-align: center;'>Upload an Image to Make a Prediction</h3>", unsafe_allow_html=True)
+
+    # Upload image
     uploaded_image = st.file_uploader(" ", type=['jpg', 'jpeg'])
 
     if uploaded_image is not None:
-        st.image(uploaded_image)
+        # Use columns to center the image
+        col1, col2, col3 = st.columns([1, 2, 1])  # middle column is wider
+        with col2:
+            st.image(uploaded_image, use_container_width=True)  # updated param
 
+        # Get prediction
         label, confidence = get_prediction(classifier, uploaded_image)
         color = "green" if label == "Real" else "crimson"
-        st.markdown(f"<h2 style='color:{color};'>{label}, Confidence: {confidence:.2f}</h2>", unsafe_allow_html=True)
 
+        # Centered prediction text
+        st.markdown(
+            f"<h2 style='text-align: center; color:{color}; margin-top: 20px;'>{label}, Confidence: {confidence:.2f}</h2>",
+            unsafe_allow_html=True
+        )
 
 # -------------------
 # MAIN FUNCTION
@@ -135,7 +146,7 @@ def detector_mode(classifier):
 def main():
     st.markdown("""
 <h1 style='text-align: center;'>
-    🕵️‍♂️ Deepfake Image Detector:
+    🕵️‍♂️ Deepfake Image Detector
 </h1>
 """, unsafe_allow_html=True)
   
