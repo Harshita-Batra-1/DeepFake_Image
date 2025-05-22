@@ -24,7 +24,7 @@ st.markdown("""
 
     /* Adjust the uploader box width */
     .stFileUploader {
-        max-width: 500px;  /* You can change this value */
+        max-width: 600px;  /* You can change this value */
         width: 100% !important;
         margin-left: auto;
         margin-right: auto;
