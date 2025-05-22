@@ -13,6 +13,23 @@ import time
 # Set page configuration FIRST
 st.set_page_config(layout="wide")
 
+st.markdown("""
+    <style>
+    /* Center all content and control uploader width */
+    .centered {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Shrink the uploader box width */
+    .stFileUploader {
+        max-width: 850px;
+        margin: auto;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 @st.cache_resource()
 def load_model():
@@ -101,10 +118,8 @@ def game_mode(classifier, images):
         st.subheader(f"***It's {true_label}!***")
 
 def detector_mode(classifier):
-    st.header("Detector Mode")
-    st.subheader("Upload an Image to Make a Prediction")
-
-    uploaded_image = st.file_uploader("Upload your own image to test the model:", type=['jpg', 'jpeg'])
+    st.markdown("<h3 style='text-align: center;'>Upload an Image to Make a Prediction</h3>", unsafe_allow_html=True)
+    uploaded_image = st.file_uploader(" ", type=['jpg', 'jpeg'])
 
     if uploaded_image is not None:
         st.image(uploaded_image)
@@ -118,8 +133,12 @@ def detector_mode(classifier):
 # MAIN FUNCTION
 # -------------------
 def main():
-    st.title("Deepfake Detector:")
-
+    st.markdown("""
+<h1 style='text-align: center;'>
+    🕵️‍♂️ Deepfake Image Detector:
+</h1>
+""", unsafe_allow_html=True)
+  
     # load model and sample images
     classifier = load_model()
     images = load_images()
