@@ -127,14 +127,16 @@ def detector_mode(classifier):
     # Centered heading
     st.markdown("<h3 style='text-align: center;'>Upload an Image to Make a Prediction</h3>", unsafe_allow_html=True)
 
-    # Upload image
-    uploaded_image = st.file_uploader(" ", type=['jpg', 'jpeg'])
+    # Use columns to control width
+    col1, col2, col3 = st.columns([1, 2, 1])  # Make middle column wider
+
+    with col2:
+        uploaded_image = st.file_uploader(" ", type=['jpg', 'jpeg'])
 
     if uploaded_image is not None:
-        # Use columns to center the image
-        col1, col2, col3 = st.columns([1, 2, 1])  # middle column is wider
+        # Show image centered again in wider column
         with col2:
-            st.image(uploaded_image)  # updated param
+            st.image(uploaded_image)
 
         # Get prediction
         label, confidence = get_prediction(classifier, uploaded_image)
@@ -145,6 +147,7 @@ def detector_mode(classifier):
             f"<h2 style='text-align: center; color:{color}; margin-top: 20px;'>{label}, Confidence: {confidence:.2f}</h2>",
             unsafe_allow_html=True
         )
+
 
 # -------------------
 # MAIN FUNCTION
