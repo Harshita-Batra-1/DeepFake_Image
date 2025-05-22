@@ -128,7 +128,7 @@ def detector_mode(classifier):
         # Use columns to center the image
         col1, col2, col3 = st.columns([1, 2, 1])  # middle column is wider
         with col2:
-            st.image(uploaded_image, use_container_width=True)  # updated param
+            st.image(uploaded_image)  # updated param
 
         # Get prediction
         label, confidence = get_prediction(classifier, uploaded_image)
