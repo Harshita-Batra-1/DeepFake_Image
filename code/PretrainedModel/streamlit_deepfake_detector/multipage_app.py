@@ -28,6 +28,11 @@ st.markdown("""
         max-width: 850px;
         margin: auto;
     }
+    .dropdown {
+    width: 100%; /* Matches parent width */
+    min-width: 200px; /* Optional: to avoid it being too small */
+    }
+
     </style>
 """, unsafe_allow_html=True)
 
