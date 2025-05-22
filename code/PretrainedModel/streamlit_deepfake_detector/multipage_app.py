@@ -12,7 +12,6 @@ import time
 
 # Set page configuration FIRST
 st.set_page_config(layout="wide")
-
 st.markdown("""
     <style>
     /* Center all content and control uploader width */
@@ -23,16 +22,18 @@ st.markdown("""
         text-align: center;
     }
 
-    /* Shrink the uploader box width */
+    /* Adjust the uploader box width */
     .stFileUploader {
-        max-width: 850px;
-        margin: auto;
-    }
-    .dropdown {
-    width: 100%; /* Matches parent width */
-    min-width: 200px; /* Optional: to avoid it being too small */
+        max-width: 500px;  /* You can change this value */
+        width: 100% !important;
+        margin-left: auto;
+        margin-right: auto;
     }
 
+    .dropdown {
+        width: 100%; /* Matches parent width */
+        min-width: 200px;
+    }
     </style>
 """, unsafe_allow_html=True)
 
